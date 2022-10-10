@@ -14,8 +14,11 @@ class CreateShiftSchedulesTable extends Migration
     public function up()
     {
         Schema::create('shift_schedules', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('schedule_id');
+            $table->unsignedBigInteger('shift_id');
+
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

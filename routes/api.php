@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ChallengeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/import/attendance', [AttendanceController::class, 'import']);
+Route::get('/challenge2', [ChallengeController::class, 'challenge2']);
+Route::get('/challenge4', [ChallengeController::class, 'challenge4']);
+Route::apiResource('attendance', class_basename(AttendanceController::class));

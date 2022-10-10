@@ -15,7 +15,12 @@ class CreateEmployeeSchedulesTable extends Migration
     {
         Schema::create('employee_schedules', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('schedule_id');
+            $table->date('start_date');
             $table->timestamps();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
